@@ -252,7 +252,7 @@
           {/* Login Link */}
           <div className="mt-4 text-center">
             <p className="text-black lg:text-base text-sm font-amifer">
-              Already have an account?{' '}
+              Already have an account?      
               <a href="/login" className="text-indigo-500 text-sm  lg:text-base hover:text-indigo-600">
                 Login
               </a>
