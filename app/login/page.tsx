@@ -40,7 +40,7 @@ const LoginPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/forgot-password', {
+      const response = await fetch('https://itinevel-back-b07pqw9rh-itinevels-projects.vercel.app/api/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

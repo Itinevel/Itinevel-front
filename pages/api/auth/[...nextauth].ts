@@ -10,7 +10,7 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const res = await fetch('http://localhost:3001/api/login', {
+        const res = await fetch('https://itinevel-back-b07pqw9rh-itinevels-projects.vercel.app/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
