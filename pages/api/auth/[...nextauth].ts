@@ -10,7 +10,8 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const res = await fetch('https://itinevel-back-b07pqw9rh-itinevels-projects.vercel.app/api/login', {
+        try{
+        const res = await fetch('https://itinevel-back.vercel.app/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -25,7 +26,11 @@ export default NextAuth({
         if (res.ok && user) {
           return user; // Return the user object to be included in the JWT
         } else {
+          console.error('Login failed:', user); 
           return null; // Return null to indicate failed authentication
+        }} catch (error) {
+          console.error('Error during authorization:', error);
+          return null;
         }
       },
     }),
