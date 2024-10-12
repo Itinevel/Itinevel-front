@@ -5,10 +5,11 @@
   import Popup from '@/components/utils/popmailconfirm';
   import { useSearchParams, useRouter } from 'next/navigation'; 
   import { useSession } from 'next-auth/react';
+import { useClientSearchParams } from '@/components/useClientSearchParams';
 
   const RegisterPage = () => {
     const router = useRouter();
-    const searchParams = useSearchParams(); 
+    const searchParams = useClientSearchParams(); 
     const [isClient, setIsClient] = useState(false);
     const [name, setName] = useState('');  
     const [email, setEmail] = useState('');
@@ -33,23 +34,23 @@
     }, []);
 
     useEffect(() => {
-      if (typeof window !== 'undefined') {
+   
       if (status === 'authenticated') {
         // If user is logged in, redirect to the home page (or another page)
         router.replace('/');
-      }}
+      }
     }, [status, router]);
 
 
     useEffect(() => {
-      if (isClient) { // Only use searchParams after confirming client-side
+       // Only use searchParams after confirming client-side
         const searchParams = useSearchParams();
         const role = searchParams?.get('role');
         if (role) {
           setRoles(role.split(','));
-        }
+        
       }
-    }, [isClient, searchParams]);
+    }, [ searchParams]);
 
     const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       const confirmValue = e.target.value;
