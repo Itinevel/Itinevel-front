@@ -59,7 +59,7 @@
       }
 
       try {
-        const response = await fetch('https://3c05-41-226-167-93.ngrok-free.app/api/register', {  
+        const response = await fetch('https://itinevel-back.vercel.app/api/register', {  
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
