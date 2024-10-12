@@ -1,5 +1,5 @@
   "use client"; 
-  import React, { useState, useEffect } from 'react';
+  import React, { useState, Suspense , useEffect } from 'react';
   import { FaCheckCircle, FaTimesCircle, FaExclamationTriangle, FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; 
   import travelImage from '@/public/images/bali.webp';
   import Popup from '@/components/utils/popmailconfirm';
@@ -27,18 +27,20 @@
     const router = useRouter();
 
     useEffect(() => {
+      if (typeof window !== 'undefined') {
       if (status === 'authenticated') {
         // If user is logged in, redirect to the home page (or another page)
         router.replace('/');
-      }
+      }}
     }, [status, router]);
 
 
     useEffect(() => {
+      if (typeof window !== 'undefined') {
       const role = searchParams?.get('role'); 
       if (role) {
         setRoles(role.split(',')); 
-      }
+      }}
     }, [searchParams]);
 
     const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,6 +95,7 @@
     };
 
     return (
+      <Suspense fallback={<div>Loading...</div>}>
       <div className="h-screen flex flex-col md:flex-row">
         {/* Popup Component */}
         <Popup
@@ -257,6 +260,7 @@
           </div>
         </div>
       </div>
+      </Suspense>
     );
   };
 
