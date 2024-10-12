@@ -148,7 +148,7 @@ const LoginPage = () => {
       <div className="mt-6 text-center">
         {!isForgotPassword && (
           <p className="text-gray-600"> 
-          Don&apos;t have an account?  
+          Don&apos;t have an account?
           <a href="/register" className="text-indigo-500 hover:text-indigo-600">
             Register
           </a>
