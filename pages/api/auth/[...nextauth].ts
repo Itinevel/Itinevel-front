@@ -10,29 +10,34 @@ export default NextAuth({
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        try{
-        const res = await fetch('https://itinevel-back-git-main-itinevels-projects.vercel.app/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: credentials?.email,
-            password: credentials?.password,
-          }),
-        });
-
-        const user = await res.json();
-
-        // If login is successful and user data is returned
-        if (res.ok && user) {
-          return user; // Return the user object to be included in the JWT
-        } else {
-          console.error('Login failed:', user); 
-          return null; // Return null to indicate failed authentication
-        }} catch (error) {
+        try {
+          const res = await fetch('https://itinevel-back.vercel.app/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: credentials?.email,
+              password: credentials?.password,
+            }),
+          });
+      
+          // Check for non-JSON response
+          if (!res.ok) {
+            const text = await res.text();
+            console.error('Non-JSON response from backend:', text);
+            throw new Error('Backend did not return JSON');
+          }
+      
+          const user = await res.json();
+          if (user) {
+            return user;
+          }
+          return null;
+        } catch (error) {
           console.error('Error during authorization:', error);
           return null;
         }
       },
+      
     }),
   ],
   session: {
