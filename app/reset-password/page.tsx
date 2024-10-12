@@ -1,12 +1,12 @@
-"use client";
+"use client"; // Client-side component
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 const ResetPasswordPage = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const token = searchParams?.get('token'); // Retrieve token from query params
+  const router = useRouter(); // For navigation
+  const searchParams = useSearchParams(); // For query parameters
+  const token = searchParams?.get('token'); // Get the token from the query string
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -29,7 +29,9 @@ const ResetPasswordPage = () => {
     try {
       const response = await fetch('http://localhost:3001/auth/reset-password', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({ token, newPassword: password }),
       });
 
@@ -37,7 +39,7 @@ const ResetPasswordPage = () => {
 
       if (response.ok) {
         setSuccessMessage('Password has been successfully reset. You can now log in.');
-        setTimeout(() => router.push('/login'), 3000); // Redirect after 3 seconds
+        setTimeout(() => router.push('/login'), 3000); // Redirect to login after 3 seconds
       } else {
         setError(data.error || 'Failed to reset password.');
       }
@@ -64,7 +66,7 @@ const ResetPasswordPage = () => {
             <input
               id="password"
               type="password"
-              className="w-full text-black p-2 border border-gray-300 rounded-md"
+              className="w-full text-black p-2  border border-gray-300 rounded-md"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -78,7 +80,7 @@ const ResetPasswordPage = () => {
             <input
               id="confirm-password"
               type="password"
-              className="w-full text-black p-2 border border-gray-300 rounded-md"
+              className="w-full  text-black p-2 border border-gray-300 rounded-md"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required

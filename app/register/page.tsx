@@ -1,5 +1,5 @@
   "use client"; 
-  import React, { useState, Suspense , useEffect } from 'react';
+  import React, { useState, useEffect } from 'react';
   import { FaCheckCircle, FaTimesCircle, FaExclamationTriangle, FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; 
   import travelImage from '@/public/images/bali.webp';
   import Popup from '@/components/utils/popmailconfirm';
@@ -7,15 +7,7 @@
   import { useSession } from 'next-auth/react';
 
   const RegisterPage = () => {
-    const router = useRouter();
     const searchParams = useSearchParams(); 
-
-     // Access role parameter once from searchParams and initialize state accordingly
-  const role = searchParams?.get('role');
-  const initialRoles = role ? role.split(',') : ['USER'];
-  const [roles, setRoles] = useState(initialRoles);
-
-    const [isClient, setIsClient] = useState(false);
     const [name, setName] = useState('');  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,23 +20,26 @@
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [popupVisible, setPopupVisible] = useState(false); 
-   
+    const [roles, setRoles] = useState(['USER']); 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const { data: session, status } = useSession();
-   
+    const router = useRouter();
 
     useEffect(() => {
-      setIsClient(true); // Component is now client-side
-    }, []);
-
-    useEffect(() => {
-      if (typeof window !== 'undefined') {
       if (status === 'authenticated') {
         // If user is logged in, redirect to the home page (or another page)
         router.replace('/');
-      }}
+      }
     }, [status, router]);
+
+
+    useEffect(() => {
+      const role = searchParams?.get('role'); 
+      if (role) {
+        setRoles(role.split(',')); 
+      }
+    }, [searchParams]);
 
     const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       const confirmValue = e.target.value;
@@ -98,7 +93,6 @@
     };
 
     return (
-      <Suspense fallback={<div>Loading...</div>}>
       <div className="h-screen flex flex-col md:flex-row">
         {/* Popup Component */}
         <Popup
@@ -263,7 +257,6 @@
           </div>
         </div>
       </div>
-      </Suspense>
     );
   };
 
