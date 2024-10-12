@@ -8,6 +8,7 @@
 
   const RegisterPage = () => {
     const router = useRouter();
+    const searchParams = useSearchParams(); 
     const [isClient, setIsClient] = useState(false);
     const [name, setName] = useState('');  
     const [email, setEmail] = useState('');
@@ -48,7 +49,7 @@
           setRoles(role.split(','));
         }
       }
-    }, [isClient]);
+    }, [isClient, searchParams]);
 
     const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       const confirmValue = e.target.value;
