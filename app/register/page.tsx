@@ -1,12 +1,12 @@
   "use client"; 
-  import React, { useState, useEffect } from 'react';
+  import React, { useState, useEffect, Suspense } from 'react';
   import { FaCheckCircle, FaTimesCircle, FaExclamationTriangle, FaUser, FaEnvelope, FaLock } from 'react-icons/fa'; 
   import travelImage from '@/public/images/bali.webp';
   import Popup from '@/components/utils/popmailconfirm';
   import { useSearchParams, useRouter } from 'next/navigation'; 
   import { useSession } from 'next-auth/react';
 
-  const RegisterPage = () => {
+  const RegisterPageContent= () => {
     const searchParams = useSearchParams(); 
     const [name, setName] = useState('');  
     const [email, setEmail] = useState('');
@@ -257,6 +257,14 @@
           </div>
         </div>
       </div>
+    );
+  };
+
+  const RegisterPage = () => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <RegisterPageContent />
+      </Suspense>
     );
   };
 
