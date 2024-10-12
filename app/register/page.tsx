@@ -7,7 +7,8 @@
   import { useSession } from 'next-auth/react';
 
   const RegisterPage = () => {
-    const searchParams = useSearchParams(); 
+    const router = useRouter();
+    const [isClient, setIsClient] = useState(false);
     const [name, setName] = useState('');  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,7 +25,11 @@
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const { data: session, status } = useSession();
-    const router = useRouter();
+   
+
+    useEffect(() => {
+      setIsClient(true); // Component is now client-side
+    }, []);
 
     useEffect(() => {
       if (typeof window !== 'undefined') {
@@ -36,12 +41,14 @@
 
 
     useEffect(() => {
-      if (typeof window !== 'undefined') {
-      const role = searchParams?.get('role'); 
-      if (role) {
-        setRoles(role.split(',')); 
-      }}
-    }, [searchParams]);
+      if (isClient) { // Only use searchParams after confirming client-side
+        const searchParams = useSearchParams();
+        const role = searchParams?.get('role');
+        if (role) {
+          setRoles(role.split(','));
+        }
+      }
+    }, [isClient]);
 
     const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       const confirmValue = e.target.value;
