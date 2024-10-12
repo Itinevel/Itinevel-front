@@ -1,9 +1,9 @@
-"use client"; // Client-side component
+// "use client"; // Client-side component
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const ResetPasswordPage = () => {
+const ResetPasswordPageContent = () => {
   const router = useRouter(); // For navigation
   const searchParams = useSearchParams(); // For query parameters
   const token = searchParams?.get('token'); // Get the token from the query string
@@ -66,7 +66,7 @@ const ResetPasswordPage = () => {
             <input
               id="password"
               type="password"
-              className="w-full text-black p-2  border border-gray-300 rounded-md"
+              className="w-full text-black p-2 border border-gray-300 rounded-md"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -80,7 +80,7 @@ const ResetPasswordPage = () => {
             <input
               id="confirm-password"
               type="password"
-              className="w-full  text-black p-2 border border-gray-300 rounded-md"
+              className="w-full text-black p-2 border border-gray-300 rounded-md"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -96,6 +96,14 @@ const ResetPasswordPage = () => {
         </form>
       </div>
     </div>
+  );
+};
+
+const ResetPasswordPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordPageContent />
+    </Suspense>
   );
 };
 
