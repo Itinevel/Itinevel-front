@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'; // NextAuth.js session
 import { useRouter, useParams } from 'next/navigation'; // Updated import for router and params
-import ProfilePage from '../page';
+import ProfilePage from '../../../components/ProfileComponent';
 
 const UserProfileDynamicPage = () => {
   const { data: session, status } = useSession();
