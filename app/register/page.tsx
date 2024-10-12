@@ -33,9 +33,6 @@
       }
     }, [status, router]);
 
-    if (status === 'authenticated') {
-      return null; // Render nothing while redirecting
-    }
 
     useEffect(() => {
       const role = searchParams?.get('role'); 
