@@ -2,8 +2,7 @@
 "use client";
 
 import { useParams } from 'next/navigation';
-import GlobalPlanPage from '@/app/global-plan/page';
-
+import GlobalPlanPage from '@/components/view/GlobalPlanComponent';
 const GlobalPlanDynamicPage = () => {
   const params = useParams();
   const planId  = params?.planId;
