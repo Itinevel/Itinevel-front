@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import CreateItineraryPage from '../create-itinerary/page';
+import CreateItineraryPage from '../../components/creation/CreateItineraryComponent.tsx';
 import { GoogleMapComponentProps, ItineraryData, Plan, InitialPlan } from '@/interfaces/Itinerary';
 import GoogleMapComponent from '@/components/GoogleMapComponent';
 import { TripLocation } from '@/interfaces/Itinerary';
