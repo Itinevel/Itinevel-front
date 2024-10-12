@@ -46,17 +46,6 @@
       }}
     }, [status, router]);
 
-
-    useEffect(() => {
-      if (isClient) { // Only use searchParams after confirming client-side
-        const searchParams = useSearchParams();
-        const role = searchParams?.get('role');
-        if (role) {
-          setRoles(role.split(','));
-        }
-      }
-    }, [isClient]);
-
     const handleConfirmPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       const confirmValue = e.target.value;
       setConfirmPassword(confirmValue);
