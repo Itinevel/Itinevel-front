@@ -88,7 +88,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, onNavigate }) => {
   const confirmBecomeSeller = async () => {
     try {
       // Send request to update roles in the database
-      const response = await fetch(`http://itinevel-back.vercel.app/api/users/${userId}/updateRole`, {
+      const response = await fetch(`https://itinevel-back.vercel.app/api/users/${userId}/updateRole`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
