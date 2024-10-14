@@ -11,7 +11,7 @@ export default NextAuth({
       },
       async authorize(credentials) {
         try {
-          const res = await fetch('https://itinevel-back-lug1ncmym-itinevels-projects.vercel.app/api/login', {
+          const res = await fetch('https://itinevel-back.vercel.app/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

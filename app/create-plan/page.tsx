@@ -91,7 +91,7 @@ const CreatePlan = ({ initialPlan }: any) => {
 
     const fetchUserPlans = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/users/${session.user.id}/plans`);
+        const response = await fetch(`https://itinevel-back.vercel.app/api/users/${session.user.id}/plans`);
         if (!response.ok) {
           throw new Error('Failed to fetch user plans');
         }

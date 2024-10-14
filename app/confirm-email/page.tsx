@@ -13,7 +13,7 @@ const ConfirmEmail = () => {
 
     if (token) {
       // Call the backend to confirm the email
-      fetch(`http://localhost:3001/api/confirm-email?token=${token}`)
+      fetch(`https://itinevel-back.vercel.app/api/confirm-email?token=${token}`)
         .then((response) => response.json())
         .then((data) => {
           if (data.error) {

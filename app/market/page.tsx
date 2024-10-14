@@ -16,7 +16,7 @@ const ItineraryMarketPage: React.FC = () => {
   useEffect(() => {
     const fetchPlans = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/itinerary/plans?sell=true');
+        const response = await fetch('https://itinevel-back.vercel.app/api/itinerary/plans?sell=true');
         const data = await response.json();
         setPlans(data);
         setFilteredPlans(data); // Set both plans and filtered plans to initial fetched data
