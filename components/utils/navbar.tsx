@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ className, onNavigate }) => {
     const fetchUserPlans = async () => {
       if (isLoggedIn) {
         try {
-          const response = await fetch(`http://localhost:3001/api/users/${userId}/plans`); // Adjust the API route if necessary
+          const response = await fetch(`https://itinevel-back.vercel.app/api/users/${userId}/plans`); // Adjust the API route if necessary
           const plans = await response.json();
           setUserPlans(plans); // Save plans in state
         } catch (error) {

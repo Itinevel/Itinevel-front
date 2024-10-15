@@ -19,7 +19,7 @@ const EditPlanPage: React.FC = () => {
     if (planId) {
       const fetchPlanById = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/api/itinerary/plans/${planId}`);
+          const response = await fetch(`https://itinevel-back.vercel.app/api/itinerary/plans/${planId}`);
           if (!response.ok) {
             throw new Error('Failed to fetch the plan');
           }
